@@ -23,7 +23,7 @@ RUN git clone https://github.com/IamGunpoint/nodejs-ubuntu-vm.git .
 RUN npm install || true
 
 # Expose port (change if your server uses different)
-EXPOSE 3000
+EXPOSE 7860
 
 # Run server.js
 CMD ["node", "server.js"]
