@@ -1,25 +1,17 @@
 {
-  "name": "proot-ubuntu-container-engine",
-  "version": "1.0.0",
-  "description": "An interactive, browser-accessible Ubuntu userspace environment powered by PRoot and WebSockets.",
-  "main": "index.js",
+  "name": "ubuntu-browser-terminal",
+  "version": "2.0.0",
+  "description": "Real browser terminal — xterm.js + proot Ubuntu 22.04",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
-  "keywords": [
-    "proot",
-    "ubuntu",
-    "terminal",
-    "websocket",
-    "interactive",
-    "shell"
-  ],
-  "author": "ImGunpoint",
-  "license": "ISC",
   "dependencies": {
-    "ws": "^8.18.0"
+    "ws": "^8.18.0",
+    "node-pty": "^1.0.0"
   },
   "engines": {
-    "node": ">=16.0.0"
-  }
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
 }
