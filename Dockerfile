@@ -2,28 +2,23 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install basics + node + git
 RUN apt-get update && apt-get install -y \
-    curl \
-    git \
-    ca-certificates \
-    build-essential
+    curl ca-certificates tar git build-essential python3 \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install Node.js (LTS)
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs
+# Node.js 20
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+  && apt-get install -y nodejs \
+  && rm -rf /var/lib/apt/lists/*
 
-# Create app directory
 WORKDIR /app
 
-# Clone your repo
-RUN git clone https://github.com/IamGunpoint/nodejs-ubuntu-vm.git .
+COPY package.json ./
+RUN npm install --omit=dev
 
-# Install dependencies
-RUN npm install || true
+COPY server.js ./
 
-# Expose port (change if your server uses different)
+ENV PORT=7860
 EXPOSE 7860
 
-# Run server.js
 CMD ["node", "server.js"]
