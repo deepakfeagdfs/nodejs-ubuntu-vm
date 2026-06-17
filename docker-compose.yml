@@ -1,18 +1,13 @@
 version: "3.8"
-
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: node-ubuntu-vm
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    environment:
-      NODE_ENV: production
+    image: node:20-bookworm
+    working_dir: /app
     volumes:
       - .:/app
-      - /app/node_modules
-    working_dir: /app
-    command: node server.js
+    command: sh -c "npm install && node server.js"
+    ports:
+      - "7860:7860"
+    environment:
+      PORT: "7860"
+    restart: unless-stopped
